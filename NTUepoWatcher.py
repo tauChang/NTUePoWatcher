@@ -51,6 +51,7 @@ class NTUepoWatcher():
         return "[" + datetime.now().strftime('%Y-%m-%d %H:%M:%S') + "]"
     
     def run(self):
+        print(self.getTime() + " start watching...")
         self.login()
         oldContent = self.getGradePage().content
         while True:
@@ -76,7 +77,7 @@ class NTUepoWatcher():
 def main():
     epoPassword = getpass('NTUepo password: ')
     gmailPassword = getpass('Gmail password: ')
-    watcher = NTUepoWatcher('epoUsername', epoPassword, 'gmailSender', gmailPassword, 'gmailReceiver', 600)
+    watcher = NTUepoWatcher('b05703092', epoPassword, 'tomy.1516@gmail.com', gmailPassword, 'tomy.1516@gmail.com', 10)
     watcher.run()
     
 if __name__ == '__main__':
