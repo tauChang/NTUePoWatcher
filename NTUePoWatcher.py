@@ -1,5 +1,4 @@
 import requests
-from bs4 import BeautifulSoup
 import time
 from datetime import datetime
 import hashlib
@@ -27,7 +26,7 @@ class NTUepoWatcher():
         message = """\
         Subject: Something has changed!
 
-        Something has changed on NTUepo! Check it out."""
+        Something has changed on NTU e-portfolio! Check it out."""
         return message
         
         
@@ -58,8 +57,6 @@ class NTUepoWatcher():
             try:
                 time.sleep(self.timeInterval)
                 newContent = self.getGradePage().content
-                #soup = BeautifulSoup(newContent.decode('Big5'), 'html.parser')
-                #print(soup.prettify())
                 if oldContent == newContent:
                     print(self.getTime() + " nothing changed...")
                     oldContent = newContent
@@ -75,9 +72,13 @@ class NTUepoWatcher():
                 break
                     
 def main():
-    epoPassword = getpass('NTUepo password: ')
-    gmailPassword = getpass('Gmail password: ')
-    watcher = NTUepoWatcher('b05703092', epoPassword, 'tomy.1516@gmail.com', gmailPassword, 'tomy.1516@gmail.com', 10)
+    epoUserName = 'bxxxxxxxx'
+    epoPassword = getpass('NTU e-portfolio password: ')
+    senderEmail = 'yyy@gmail.com'
+    senderPassword = getpass('Gmail password: ')
+    receiverEmail = 'zzz@gmail.com'
+    timeInterval = 10
+    watcher = NTUepoWatcher(epoUserName, epoPassword, senderEmail, senderPassword, receiverEmail, timeInterval)
     watcher.run()
     
 if __name__ == '__main__':
